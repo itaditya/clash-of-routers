@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "@reach/router";
 
 const Item = ({ title }) => (
   <li>
-    <NavLink to={`/products/${title.toLowerCase()}`}>{title}</NavLink>
+    <Link to={`/products/${title.toLowerCase()}`}>{title}</Link>
   </li>
 );
 

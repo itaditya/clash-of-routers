@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Router, Link } from "@reach/router";
 
 import AddToCartButton from "../components/AddToCartButton";
 import ItemList from "../components/ItemList";
@@ -16,6 +16,19 @@ const mainStyles = {
   textAlign: "center"
 };
 
+const Index = () => (
+  <h4>
+    Select a product from the wide range of computer accessories
+  </h4>
+)
+
+const Product = (props) => (
+  <div>
+    <div>{props.productId}</div>
+    <AddToCartButton />
+  </div>
+)
+
 export default props => (
   <div style={{ display: "flex" }}>
     <aside style={sidebarStyles}>
@@ -23,17 +36,10 @@ export default props => (
       <ItemList />
     </aside>
     <main style={mainStyles}>
-      <Route exact path="/products" render={() => (
-        <h4>Select a product from the wide range of computer accessories</h4>
-      )} />
-      <Route path="/products/:productId" render={(props) => (
-        <div>
-          <div>
-            {props.match.params.productId}
-          </div>
-          <AddToCartButton />
-        </div>
-      )} />
+      <Router>
+        <Index path="/" />
+        <Product path=":productId" />
+      </Router>
     </main>
   </div>
 );
